@@ -1,0 +1,104 @@
+
+<button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Añadir nuevo Zombie
+</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">indice</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">type</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let zombie of zombies | async; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{zombie.name}}</td>
+            <td>{{zombie.email}}</td>
+            <td>{{zombie.type}}</td>
+            <td><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal1" (click)="editarZombies(zombie.name,zombie.email,zombie.type,zombie._id)">
+                Editar
+              </button></td>
+            <td><button type="button" class="btn btn-danger" (click)="eliminarZombies(zombie._id)" data-dismiss="modal" >Eliminar</button></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="modal" #modal id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Zombie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="">
+                    <div class="position-relative form-group">
+                        <label for="nombre" class="">Nombre</label>
+                        <input [(ngModel)]="nombre" name="nombre" id="nombre" placeholder="Nombre" type="text" class="form-control">
+                </div>
+
+                    <div class="position-relative form-group">
+                        <label for="email" class="">Email</label>
+                        <input [(ngModel)]="email" name="email" id="email" placeholder="Email" type="email" class="form-control">
+                    </div>
+                    
+                    <div class="position-relative form-group">
+                        <label for="exampleSelect" class="">Tipo</label>
+                        <select [(ngModel)]="tipo" name="select" id="tipo" class="form-control">
+                            <option>Alumno Zombie</option>
+                            <option>Maestro Zombie</option>
+                        </select>
+                </div>
+                </form>
+                <div #error>{{error0}}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarZombies()" >Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" #modal1 id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Zombie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="">
+                    <div class="position-relative form-group">
+                        <label for="nombre" class="">Nombre</label>
+                        <input [(ngModel)]="nombre" name="nombre" id="nombre" placeholder="Nombre" type="text" class="form-control" value="{{nombre}}">
+                </div>
+
+                    <div class="position-relative form-group">
+                        <label for="email" class="">Email</label>
+                        <input [(ngModel)]="email" name="email" id="email" placeholder="Email" type="email" class="form-control">
+                    </div>
+                    
+                    <div class="position-relative form-group">
+                        <label for="exampleSelect" class="">Tipo</label>
+                        <select [(ngModel)]="tipo" name="select" id="tipo" class="form-control">
+                            <option>Alumno Zombie</option>
+                            <option>Maestro Zombie</option>
+                        </select>
+                </div>
+                </form>
+                <div #error>{{error1}}</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editarZombie()" data-dismiss="modal" >Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

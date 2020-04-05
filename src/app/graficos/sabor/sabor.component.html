@@ -1,0 +1,23 @@
+<div class="col-md-8 offset-md-2 center-block">
+    <div>
+      <h1 class="text-center">Gráfica que muestra los sabores que existen</h1>
+      <br>
+      <div class="chart">
+        <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [colors]="pieChartColors"
+          [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <button mat-button mat-raised-button class="btn btn-success" (click)="actualizarS()">Mostrar valores</button>
+    <button mat-button mat-raised-button class="btn btn-primary" (click)="pieChartLegend=!pieChartLegend">Mostrar simbología</button>
+    <button mat-button mat-raised-button class="btn btn-primary" (click)="changeLegendPosition()">Cambiar simbología de posición</button>
+  </div>
